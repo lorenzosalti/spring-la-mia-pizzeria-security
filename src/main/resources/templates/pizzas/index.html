@@ -7,7 +7,14 @@
   <header th:insert="~{fragments/navbar :: navbar}" />
 
   <main class="container">
-    <h1 class="mb-3">Menù delle pizze</h1>
+    <h1 class="mb-3">Menù</h1>
+
+    <form action="/pizzas/search" method="get" class="d-flex mb-3" role="search">
+      <input type="search" id="name" name="name" class="form-control" placeholder="Cerca tra le pizze" />
+      <button type="submit" class="btn btn-outline-primary">Cerca</button>
+    </form>
+
+    <hr>
 
     <section th:if="${pizzas.size() > 0}" th:replace="~{fragments/pizzas-list :: pizzasList(${pizzas})}" />
 
