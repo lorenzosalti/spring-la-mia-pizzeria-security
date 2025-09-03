@@ -7,6 +7,7 @@
   <header th:insert="~{fragments/navbar :: navbar}" />
 
   <main th:object="${pizza}" class="container">
+
     <th:block th:if="${id > 0}">
       <h1 th:text="'Pizza ' + *{name}" class="mb-3" />
 
@@ -16,9 +17,7 @@
       <p th:text="*{description}" class="mb-3" />
 
       <h4 th:text="*{price} + '€'" />
-
     </th:block>
-
 
     <p th:unless="${id > 0}">
       Siamo spiacenti ma la pizza selezionata non è disponibile.
