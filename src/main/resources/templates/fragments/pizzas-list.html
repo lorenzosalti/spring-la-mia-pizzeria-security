@@ -1,8 +1,8 @@
 <!-- pizza list iterating -->
 <section th:fragment="pizzasList(pizzas)">
   <div th:each="pizza : ${pizzas}" class="list-group">
-    <a th:object="${pizza}" href="#" class="list-group-item list-group-item-action d-flex justify-content-between mb-1"
-      aria-current="true">
+    <a th:object="${pizza}" th:href="'/pizzas/' + *{id}"
+      class="list-group-item list-group-item-action d-flex justify-content-between mb-1" aria-current="true">
       <span th:text="*{name}" />
       <span th:text="*{price} + '€'" />
     </a>
