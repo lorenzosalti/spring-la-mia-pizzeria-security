@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/resources :: head}" />
+
+<body>
+  <header th:insert="~{fragments/navbar :: navbar}" />
+
+  <main th:object="${pizza}" class="container">
+    <th:block th:if="${id > 0}">
+      <h1 th:text="'Pizza ' + *{name}" class="mb-3" />
+
+      <img th:src="*{pictureUrl}" th:alt="'Pizza ' + *{name}" class="mb-2">
+
+      <h3 class="mb-1">Ingredienti:</h3>
+      <p th:text="*{description}" class="mb-3" />
+
+      <h4 th:text="*{price} + '€'" />
+
+    </th:block>
+
+
+    <p th:unless="${id > 0}">
+      Siamo spiacenti ma la pizza selezionata non è disponibile.
+    </p>
+
+  </main>
+
+  <script th:replace="~{fragments/resources :: script}"></script>
+</body>
+
+</html>
