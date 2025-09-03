@@ -6,9 +6,10 @@
 <body>
   <header th:insert="~{fragments/navbar :: navbar}" />
   <main class="container">
-    <h1 class="mb-3">Benvenuti nella INDEX della pizzeria</h1>
+    <h1 class="mb-3">Menù delle pizze</h1>
 
-    <p th:text="${pizzas}"></p>
+    <section th:replace="~{fragments/pizzas-list :: pizzasList(${pizzas})}" />
+
   </main>
 
   <script th:replace="~{fragments/resources :: script}"></script>
