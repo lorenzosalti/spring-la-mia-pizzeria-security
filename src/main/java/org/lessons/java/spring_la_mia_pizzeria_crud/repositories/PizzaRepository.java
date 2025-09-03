@@ -9,5 +9,5 @@ public interface PizzaRepository extends JpaRepository<Pizza, Integer> {
 
   // CUSTOM QUERYS
 
-  public List<Pizza> findByName(String name);
+  public List<Pizza> findByNameContaining(String name);
 }
