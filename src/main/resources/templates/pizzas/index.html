@@ -8,7 +8,11 @@
   <main class="container">
     <h1 class="mb-3">Menù delle pizze</h1>
 
-    <section th:replace="~{fragments/pizzas-list :: pizzasList(${pizzas})}" />
+    <section th:if="${pizzas.size() > 0}" th:replace="~{fragments/pizzas-list :: pizzasList(${pizzas})}" />
+
+    <p th:unless="${pizzas.size() > 0}">
+      Siamo spiacenti ma non ci sono pizze disponibili.
+    </p>
 
   </main>
 
