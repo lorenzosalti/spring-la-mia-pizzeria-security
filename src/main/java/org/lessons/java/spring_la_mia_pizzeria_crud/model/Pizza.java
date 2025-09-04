@@ -24,11 +24,11 @@ public class Pizza {
   private Integer id;
 
   @Column(name = "name", nullable = false)
-  @NotBlank
+  @NotBlank(message = "Il nome non può essere un campo vuoto")
   private String name;
 
   @Column(name = "description", nullable = false)
-  @NotBlank
+  @NotBlank(message = "La descrizione con gli ingredienti è obbligatoria")
   @Lob
   private String description;
 
@@ -36,7 +36,7 @@ public class Pizza {
   private String pictureUrl;
 
   @Column(name = "price", nullable = false)
-  @NotNull
+  @NotNull(message = "Il prezzo non può essere negativo")
   @Min(value = 0)
   private BigDecimal price;
 
