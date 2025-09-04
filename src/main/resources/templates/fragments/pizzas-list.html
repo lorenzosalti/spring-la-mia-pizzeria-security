@@ -7,8 +7,29 @@
       <span th:text="*{price} + '€'" />
     </a>
     <a th:href="'/pizzas/edit/' + *{id}" class="btn btn-warning">Modifica</a>
-    <form th:action="'/pizzas/delete/' + *{id}" method="post">
-      <button class="btn btn-danger" type="submit">Elimina</button>
-    </form>
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#delete-modal-' + *{id}">
+      Elimina
+    </button>
+
+    <div class="modal fade" th:id="'delete-modal-' + *{id}" tabindex="-1"
+      aria-labelledby="'delete-modal-label-' + *{id}" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="'delete-modal-label-' + *{id}">Attenzione</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Stai per cancellare la pizza "[[${pizza.name}]]".
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            <form th:action="'/pizzas/delete/' + *{id}" method="post">
+              <button class="btn btn-danger" type="submit">Conferma</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
