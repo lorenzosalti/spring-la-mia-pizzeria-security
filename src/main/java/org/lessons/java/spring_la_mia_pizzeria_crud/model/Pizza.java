@@ -9,9 +9,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "pizzas")
@@ -25,6 +27,7 @@ public class Pizza {
 
   @Column(name = "name", nullable = false)
   @NotBlank(message = "Il nome non può essere un campo vuoto")
+  @Size(max = 40, message = "La lunghezza del nome non può essere maggiore di 40 caratteri")
   private String name;
 
   @Column(name = "description", nullable = false)
@@ -36,8 +39,9 @@ public class Pizza {
   private String pictureUrl;
 
   @Column(name = "price", nullable = false)
-  @NotNull(message = "Il prezzo non può essere negativo")
-  @Min(value = 0)
+  @NotNull(message = "Il prezzo non può essere un campo vuoto")
+  @DecimalMin(value = "1.00", message = "Il prezzo non può essere minore di 1")
+  @DecimalMax(value = "999.99", message = "Nemmeno Carlo Cracco farebbe pagare una pizza così tanto. Deve esserci un errore!")
   private BigDecimal price;
 
   // CONSTRUCTORS
