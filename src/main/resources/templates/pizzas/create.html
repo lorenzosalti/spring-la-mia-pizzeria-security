@@ -12,22 +12,45 @@
     <form id="new-pizza-form" th:object="${pizza}" th:action="@{/pizzas/create}" method="post">
       <div class="mb-3">
         <label for="name-input" class="form-label">Nome della pizza</label>
-        <input type="text" class="form-control" id="name-input" th:field="*{name}">
+        <input type="text" class="form-control" id="name-input" th:field="*{name}" th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+          <ul>
+            <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+          </ul>
+        </div>
       </div>
       <div class="mb-3">
         <label for="description-input" class="form-label">Descrizione e ingredienti</label>
-        <textarea type="text" class="form-control" id="description-input" rows="3" th:field="*{description}" />
+        <textarea type="text" class="form-control" id="description-input" rows="3" th:field="*{description}"
+          th:errorClass="is-invalid" />
+        <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
+          <ul>
+            <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+          </ul>
+        </div>
       </div>
       <div class="mb-3">
         <label for="pictureUrl-input" class="form-label">Inserire l'URL di una foto della pizza (opzionale)</label>
-        <input type="text" class="form-control" id="pictureUrl-input" th:field="*{pictureUrl}">
+        <input type="text" class="form-control" id="pictureUrl-input" th:field="*{pictureUrl}"
+          th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('pictureUrl')}" class="invalid-feedback">
+          <ul>
+            <li th:each="err : ${#fields.errors('pictureUrl')}" th:text="${err}"></li>
+          </ul>
+        </div>
       </div>
       <div class="mb-3">
         <label for="price-input" class="form-label">Prezzo</label>
-        <input type="number" class="form-control" id="price-input" th:field="*{price}">
+        <input type="number" class="form-control" id="price-input" th:field="*{price}" th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('price')}" class="invalid-feedback">
+          <ul>
+            <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
+          </ul>
+        </div>
       </div>
 
       <button type="submit" class="btn btn-primary">Crea</button>
+
     </form>
 
   </main>
