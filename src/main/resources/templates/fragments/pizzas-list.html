@@ -1,10 +1,14 @@
 <!-- pizza list iterating -->
 <section th:fragment="pizzasList(pizzas)">
-  <div th:each="pizza : ${pizzas}" class="list-group">
-    <a th:object="${pizza}" th:href="'/pizzas/' + *{id}"
-      class="list-group-item list-group-item-action d-flex justify-content-between mb-1" aria-current="true">
+  <div th:each="pizza : ${pizzas}" th:object="${pizza}" class="d-flex mb-2 align-items-center gap-1">
+    <a th:href="'/pizzas/' + *{id}" class="btn btn-light  list-group-item-action  d-flex justify-content-between"
+      aria-current="true">
       <span th:text="*{name}" />
       <span th:text="*{price} + '€'" />
     </a>
+    <a th:href="'/pizzas/edit/' + *{id}" class="btn btn-warning">Modifica</a>
+    <form th:action="'/pizzas/delete/' + *{id}" method="post">
+      <button class="btn btn-danger" type="submit">Elimina</button>
+    </form>
   </div>
 </section>
