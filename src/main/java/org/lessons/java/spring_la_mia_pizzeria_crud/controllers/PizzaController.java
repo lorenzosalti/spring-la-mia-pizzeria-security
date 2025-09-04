@@ -19,6 +19,7 @@ public class PizzaController {
   @Autowired
   private PizzaRepository repository;
 
+  // INDEX
   @GetMapping
   public String index(Model model) {
     List<Pizza> pizzas = repository.findAll();
@@ -26,6 +27,7 @@ public class PizzaController {
     return "pizzas/index";
   }
 
+  // FILTERED INDEX
   @GetMapping("/search")
   public String searchByName(@RequestParam(name = "name") String name, Model model) {
     List<Pizza> pizzas = repository.findByNameContaining(name);
@@ -33,6 +35,7 @@ public class PizzaController {
     return "pizzas/index";
   }
 
+  // SHOW
   @GetMapping("/{id}")
   public String show(@PathVariable("id") Integer id, Model model) {
     Pizza pizza = repository.findById(id).get();
