@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/resources :: head}" />
+
+<body>
+  <header th:insert="~{fragments/navbar :: navbar}" />
+
+  <main class="container">
+    <h1 class="mb-3">Crea una nuova offerta per la pizza [[${offer.pizza.name}]]!</h1>
+
+    <!-- <form id="new-offer-form" th:object="${offer}" th:action="" method="post">
+      <div class="mb-3">
+        <label for="title-input" class="form-label">Titolo dell' offerta speciale</label>
+        <input type="text" class="form-control" id="title-input" th:field="*{title}" th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
+          <ul>
+            <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="startingDate-input" class="form-label">Data di inizio</label>
+        <input type="date" class="form-control" id="startingDate-input" th:field="*{startingDate}"
+          th:errorClass="is-invalid" />
+        <div th:if="${#fields.hasErrors('startingDate')}" class="invalid-feedback">
+          <ul>
+            <li th:each="err : ${#fields.errors('startingDate')}" th:text="${err}"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="endingDate-input" class="form-label">Data di fine</label>
+        <input type="date" class="form-control" id="endingDate-input" th:field="*{endingDate}"
+          th:errorClass="is-invalid" />
+        <div th:if="${#fields.hasErrors('endingDate')}" class="invalid-feedback">
+          <ul>
+            <li th:each="err : ${#fields.errors('endingDate')}" th:text="${err}"></li>
+          </ul>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Crea</button>
+
+    </form> -->
+
+  </main>
+
+  <script th:replace="~{fragments/resources :: script}"></script>
+</body>
+
+</html>
