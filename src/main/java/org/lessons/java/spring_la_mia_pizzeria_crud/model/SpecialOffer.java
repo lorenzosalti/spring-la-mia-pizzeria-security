@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -18,6 +20,10 @@ public class SpecialOffer {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
+
+  @ManyToOne
+  @JoinColumn(name = "pizza_id", nullable = false)
+  private Pizza pizza;
 
   @Column(name = "starting_date", nullable = false)
   @NotNull(message = "La data di inizio è necessaria")
