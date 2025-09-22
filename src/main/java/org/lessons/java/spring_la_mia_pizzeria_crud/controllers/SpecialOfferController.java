@@ -19,10 +19,10 @@ public class SpecialOfferController {
       Model model) {
 
     if (bindingResult.hasErrors()) {
-      return "$(err)";
+      return "special-offers/create";
     }
 
-    return "";
+    return "redirect:/pizzas";
   }
 
 }
