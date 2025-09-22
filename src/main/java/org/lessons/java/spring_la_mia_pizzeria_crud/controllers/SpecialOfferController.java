@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/pizzas")
+@RequestMapping("/offers")
 public class SpecialOfferController {
 
   @Autowired
   private SpecialOfferRepository offerRepository;
 
-  @PostMapping("/{id}/offer")
-  public String storeOffer(@Valid @ModelAttribute("offer") SpecialOffer offerToStore, BindingResult bindingResult,
+  @PostMapping("/create")
+  public String storeOffer(@Valid @ModelAttribute("offer") SpecialOffer offerToStore,
+      BindingResult bindingResult,
       Model model) {
-
     if (bindingResult.hasErrors()) {
       return "special-offers/create";
     }
-
+    offerRepository.save(offerToStore);
     return "redirect:/pizzas";
   }
 
