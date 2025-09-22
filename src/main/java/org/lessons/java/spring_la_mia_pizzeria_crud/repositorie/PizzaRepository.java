@@ -1,4 +1,4 @@
-package org.lessons.java.spring_la_mia_pizzeria_crud.repositories;
+package org.lessons.java.spring_la_mia_pizzeria_crud.repositorie;
 
 import java.util.List;
 
