@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -32,6 +33,10 @@ public class SpecialOffer {
   @Column(name = "ending_date", nullable = false)
   @NotNull(message = "La data di fine è necessaria")
   private LocalDate endingDate;
+
+  @Column(name = "title")
+  @NotBlank(message = "L'offerta speciale deve avere un titolo")
+  private String title;
 
   // CONSTRUCTOR
   public SpecialOffer() {
@@ -68,6 +73,14 @@ public class SpecialOffer {
 
   public void setEndingDate(LocalDate endingDate) {
     this.endingDate = endingDate;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 
 }
