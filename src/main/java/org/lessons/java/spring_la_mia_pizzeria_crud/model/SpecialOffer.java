@@ -46,6 +46,14 @@ public class SpecialOffer {
     this.id = id;
   }
 
+  public Pizza getPizza() {
+    return pizza;
+  }
+
+  public void setPizza(Pizza pizza) {
+    this.pizza = pizza;
+  }
+
   public LocalDate getStartingDate() {
     return startingDate;
   }
