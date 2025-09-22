@@ -1,13 +1,13 @@
 <!-- pizza list iterating -->
 <section th:fragment="pizzasList(pizzas)">
   <div th:each="pizza : ${pizzas}" th:object="${pizza}" class="d-flex mb-2 align-items-center gap-1">
-    <a th:href="'/pizzas/' + *{id}" class="btn btn-light  list-group-item-action  d-flex justify-content-between"
+    <a th:href="@{/pizzas/{id}(id=*{id})}" class="btn btn-light  list-group-item-action  d-flex justify-content-between"
       aria-current="true">
       <span th:text="*{name}" />
       <span th:text="*{price} + '€'" />
     </a>
     <a th:href="@{/pizzas/{id}/offer(id=*{id})}" class="btn btn-secondary">Nuova offerta</a>
-    <a th:href="'/pizzas/edit/' + *{id}" class="btn btn-warning">Modifica</a>
+    <a th:href="@{/pizzas/edit/{id}(id=*{id})}" class="btn btn-warning">Modifica</a>
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#delete-modal-' + *{id}">
       Elimina
     </button>
@@ -25,7 +25,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-            <form th:action="'/pizzas/delete/' + *{id}" method="post">
+            <form th:action="@{/pizzas/delete/{id}(id=*{id})}" method="post">
               <button class="btn btn-danger" type="submit">Conferma</button>
             </form>
           </div>
