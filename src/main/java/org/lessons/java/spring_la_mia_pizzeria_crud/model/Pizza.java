@@ -3,6 +3,7 @@ package org.lessons.java.spring_la_mia_pizzeria_crud.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -46,7 +47,7 @@ public class Pizza {
   @DecimalMax(value = "999.99", message = "Nemmeno Carlo Cracco farebbe pagare una pizza così tanto. Deve esserci un errore!")
   private BigDecimal price;
 
-  @OneToMany(mappedBy = "pizza")
+  @OneToMany(mappedBy = "pizza", cascade = CascadeType.REMOVE)
   private List<SpecialOffer> offers;
 
   // CONSTRUCTORS
