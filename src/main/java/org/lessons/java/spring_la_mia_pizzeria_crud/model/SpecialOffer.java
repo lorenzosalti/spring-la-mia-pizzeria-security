@@ -2,6 +2,8 @@ package org.lessons.java.spring_la_mia_pizzeria_crud.model;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,10 +30,12 @@ public class SpecialOffer {
 
   @Column(name = "starting_date", nullable = false)
   @NotNull(message = "La data di inizio è necessaria")
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate startingDate;
 
   @Column(name = "ending_date", nullable = false)
   @NotNull(message = "La data di fine è necessaria")
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate endingDate;
 
   @Column(name = "title")
