@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/resources :: head}" />
+
+<body>
+  <header th:insert="~{fragments/navbar :: navbar}" />
+
+  <main th:object="${offer}" class="container">
+
+    <th:block th:if="${id != null}">
+      <h1 th:text="*{title}" class="mb-3" />
+
+      <h3>Questa offerta è relativa alla pizza: [[*{pizza.name}]]</h3>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Data di inizio</th>
+            <th scope="col">Data di fine</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>[[*{startingDate}]]</td>
+            <td>[[*{endingDate}]]</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+    </th:block>
+
+    <p th:unless="${id != null}">
+      L'offerta selezionata è inesistente.
+    </p>
+
+  </main>
+
+  <script th:replace="~{fragments/resources :: script}"></script>
+</body>
+
+</html>
