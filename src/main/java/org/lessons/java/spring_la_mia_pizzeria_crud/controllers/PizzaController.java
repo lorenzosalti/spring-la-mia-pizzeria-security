@@ -94,7 +94,7 @@ public class PizzaController {
     SpecialOffer offer = new SpecialOffer();
     offer.setPizza(pizzaRepository.findById(id).get());
     model.addAttribute("offer", offer);
-    return "special-offers/create";
+    return "special-offers/create-edit";
   }
 
 }
