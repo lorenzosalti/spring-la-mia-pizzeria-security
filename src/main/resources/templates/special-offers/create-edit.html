@@ -9,7 +9,8 @@
   <main class="container">
     <h1 class="mb-3">Crea una nuova offerta per la pizza [[${offer.pizza.name}]]!</h1>
 
-    <form id="new-offer-form" th:object="${offer}" th:action="@{/offers/create}" method="post">
+    <form id="new-offer-form" th:object="${offer}"
+      th:action="${edit} ? @{/offers/edit/{id}(id=*{id})} : @{/offers/create}" method="post">
 
       <input type="hidden" th:field="*{pizza}" id="linked-pizza">
 
@@ -43,7 +44,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Crea</button>
+      <button type="submit" class="btn btn-primary">Conferma</button>
 
     </form>
 
