@@ -21,6 +21,12 @@ public class SpecialOfferController {
   @Autowired
   private SpecialOfferRepository offerRepository;
 
+  @GetMapping("/{id}")
+  public String showSpecialOffer(@PathVariable("id") Integer id, Model model) {
+    model.addAttribute("offer", offerRepository.findById(id).get());
+    return "special-offers/show";
+  }
+
   @PostMapping("/create")
   public String storeOffer(@Valid @ModelAttribute("offer") SpecialOffer offerToStore,
       BindingResult bindingResult,
