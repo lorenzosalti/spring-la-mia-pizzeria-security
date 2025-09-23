@@ -17,11 +17,39 @@
       <p th:text="*{description}" class="mb-3" />
 
       <h4 th:text="*{price} + '€'" />
+      <div th:if="${pizza.offers.size() > 0}">
+        <h3>Offerte Speciali!</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Offerta</th>
+              <th scope="col">Inizio</th>
+              <th scope="col">Fine</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="offer : *{offers}" th:object="${offer}">
+              <td>[[*{title}]]</td>
+              <td>[[*{startingDate}]]</td>
+              <td>[[*{endingDate}]]</td>
+              <td><a th:href="@{/offers/edit/{id}(id=*{id})}" class="btn btn-secondary">Modifica</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p th:unless="${pizza.offers.size() > 0}">
+        Lo storico delle offerte speciali di questa pizza è vuoto.
+      </p>
+
     </th:block>
 
     <p th:unless="${id > 0}">
       Siamo spiacenti ma la pizza selezionata non è disponibile.
     </p>
+
+    <a th:href="@{/pizzas/{id}/offer(id=*{id})}" class="btn btn-secondary">Nuova offerta</a>
 
   </main>
 
