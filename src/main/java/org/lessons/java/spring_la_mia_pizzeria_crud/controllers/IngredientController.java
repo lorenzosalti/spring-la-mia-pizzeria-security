@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -22,5 +23,11 @@ public class IngredientController {
     List<Ingredient> ingredients = ingredientRepository.findAll();
     model.addAttribute("ingredients", ingredients);
     return "ingredients/index";
+  }
+
+  @GetMapping("/{id}")
+  public String show(@PathVariable Integer id, Model model) {
+    model.addAttribute("ingredient", ingredientRepository.findById(id).get());
+    return "ingredients/show";
   }
 }
