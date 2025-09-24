@@ -26,7 +26,7 @@
           <tr th:each="ingredient : ${ingredients}" th:object="${ingredient}">
             <td>[[*{id}]]</td>
             <td>[[*{name}]]</td>
-            <td>Pizze in cui è presente</td>
+            <td>[[*{pizzas.size()}]]</td>
             <td><a th:href="@{/ingredients/edit/{id}(id=*{id})}" class="btn btn-secondary">Modifica</a></td>
             <td><a th:href="@{/ingredients/{id}(id=*{id})}" class="btn btn-primary">Visualizza</a></td>
           </tr>
