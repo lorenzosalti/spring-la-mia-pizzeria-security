@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/resources :: head}" />
+
+<body>
+  <header th:insert="~{fragments/navbar :: navbar}" />
+
+  <main class="container">
+    <h1 class="mb-3">Crea un nuovo ingrediente per le tue pizze!</h1>
+
+    <form id="ingredient-form" th:object="${ingredient}"
+      th:action="${edit} ? @{/ingredients/edit/{id}(id=*{id})} : @{/ingredients/create}" method="post">
+
+      <div class="mb-3">
+        <label for="name-input" class="form-label">Nome dell'ingrediente</label>
+        <input type="text" class="form-control" id="name-input" th:field="*{name}" th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+          <ul>
+            <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="description-input" class="form-label">Descrizione dell'ingrediente (Facoltativa)</label>
+        <textarea class="form-control" id="description-input" th:field="*{description}" th:errorClass="is-invalid"
+          rows="3" />
+        <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
+          <ul>
+            <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+          </ul>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Conferma</button>
+
+    </form>
+
+  </main>
+
+  <script th:replace="~{fragments/resources :: script}"></script>
+</body>
+
+</html>
