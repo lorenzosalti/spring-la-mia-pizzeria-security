@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/resources :: head}" />
+
+<body>
+  <header th:insert="~{fragments/navbar :: navbar}" />
+
+  <main th:object="${ingredient}" class="container">
+
+    <th:block th:if="${ingredient.id != null}">
+      <h1 th:text="*{name}" class="mb-3" />
+
+      <h4 class="mb-3">Numero di pizze in cui è utilizzato: <strong th:text="*{pizzas.size()}" /></h4>
+
+      <p class="mb-3">[[*{description}]]</p>
+
+    </th:block>
+
+    <p th:unless="${ingredient.id != null}">
+      L'ingrediente selezionato è inesistente.
+    </p>
+
+  </main>
+
+  <script th:replace="~{fragments/resources :: script}"></script>
+</body>
+
+</html>
