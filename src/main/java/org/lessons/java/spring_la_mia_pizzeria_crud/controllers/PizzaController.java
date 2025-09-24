@@ -2,6 +2,7 @@ package org.lessons.java.spring_la_mia_pizzeria_crud.controllers;
 
 import java.util.List;
 
+import org.lessons.java.spring_la_mia_pizzeria_crud.model.Ingredient;
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.SpecialOffer;
 import org.lessons.java.spring_la_mia_pizzeria_crud.repositories.PizzaRepository;
@@ -85,6 +86,11 @@ public class PizzaController {
   // DELETE
   @PostMapping("/delete/{id}")
   public String delete(@PathVariable("id") Integer id) {
+    Pizza pizzaToDelete = pizzaRepository.findById(id).get();
+    for (Ingredient ingredient : pizzaToDelete.getIngredients()) {
+      List<Pizza> pizzas = ingredient.getPizzas();
+      pizzas.remove(pizzaToDelete);
+    }
     pizzaRepository.deleteById(id);
     return "redirect:/pizzas";
   }

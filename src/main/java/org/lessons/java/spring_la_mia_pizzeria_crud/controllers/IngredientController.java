@@ -3,6 +3,7 @@ package org.lessons.java.spring_la_mia_pizzeria_crud.controllers;
 import java.util.List;
 
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.Ingredient;
+import org.lessons.java.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.lessons.java.spring_la_mia_pizzeria_crud.repositories.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,6 +73,11 @@ public class IngredientController {
 
   @PostMapping("delete/{id}")
   public String delete(@PathVariable Integer id) {
+    Ingredient ingredientToDelete = ingredientRepository.findById(id).get();
+    for (Pizza pizza : ingredientToDelete.getPizzas()) {
+      List<Ingredient> ingredients = pizza.getIngredients();
+      ingredients.remove(ingredientToDelete);
+    }
     ingredientRepository.deleteById(id);
     return "redirect:/ingredients";
   }
