@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/resources :: head}" />
+
+<body>
+  <header th:insert="~{fragments/navbar :: navbar}" />
+
+  <main class="container">
+    <h1 class="mb-3">Lista di tutti gli ingredienti</h1>
+
+    <hr>
+
+    <div th:if="${ingredients.size() > 0}" class="mb-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Pizze in cui è presente</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="ingredient : ${ingredients}" th:object="${ingredient}">
+            <td>[[*{id}]]</td>
+            <td>[[*{name}]]</td>
+            <td>Pizze in cui è presente</td>
+            <td><a th:href="@{/ingredients/edit/{id}(id=*{id})}" class="btn btn-secondary">Modifica</a></td>
+            <td><a th:href="@{/ingredients/{id}(id=*{id})}" class="btn btn-primary">Visualizza</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p th:unless="${ingredients.size() > 0}" class="mb-3">
+      La lista degli ingredienti è vuota.
+    </p>
+
+    <a class="btn btn-primary" href="/ingredients/create">Crea un ingrediente</a>
+  </main>
+
+  <script th:replace="~{fragments/resources :: script}"></script>
+</body>
+
+</html>
