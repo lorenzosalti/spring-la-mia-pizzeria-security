@@ -7,9 +7,12 @@
   <header th:insert="~{fragments/navbar :: navbar}" />
 
   <main class="container">
-    <h1 class="mb-3">Crea la tua Pizza!</h1>
+    <h1 th:unless="${edit}" class="mb-3">Crea la tua Pizza!</h1>
 
-    <form id="new-pizza-form" th:object="${pizza}" th:action="@{/pizzas/create}" method="post">
+    <h1 th:if="${edit}" class="mb-3">Modifica la Pizza selezionata</h1>
+
+    <form id="new-pizza-form" th:object="${pizza}"
+      th:action="${edit} ? @{/pizzas/edit/{id}(id=*{id})} :@{/pizzas/create}" method="post">
       <div class="mb-3">
         <label for="name-input" class="form-label">Nome della pizza</label>
         <input type="text" class="form-control" id="name-input" th:field="*{name}" th:errorClass="is-invalid">
@@ -50,7 +53,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Crea</button>
+      <button type="submit" class="btn btn-primary">Conferma</button>
 
     </form>
 
