@@ -5,6 +5,7 @@ import java.util.List;
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.Ingredient;
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.SpecialOffer;
+import org.lessons.java.spring_la_mia_pizzeria_crud.repositories.IngredientRepository;
 import org.lessons.java.spring_la_mia_pizzeria_crud.repositories.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,9 @@ public class PizzaController {
 
   @Autowired
   private PizzaRepository pizzaRepository;
+
+  @Autowired
+  private IngredientRepository ingredientRepository;
 
   // INDEX
   @GetMapping
@@ -55,12 +59,14 @@ public class PizzaController {
   @GetMapping("/create")
   public String create(Model model) {
     model.addAttribute("pizza", new Pizza());
+    model.addAttribute("ingredients", ingredientRepository.findAll());
     return "/pizzas/create-edit";
   }
 
   @PostMapping("/create")
   public String store(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
     if (bindingResult.hasErrors()) {
+      model.addAttribute("ingredients", ingredientRepository.findAll());
       return "/pizzas/create-edit";
     }
     pizzaRepository.save(formPizza);
@@ -71,6 +77,7 @@ public class PizzaController {
   @GetMapping("/edit/{id}")
   public String edit(@PathVariable("id") Integer id, Model model) {
     model.addAttribute("pizza", pizzaRepository.findById(id).get());
+    model.addAttribute("ingredients", ingredientRepository.findAll());
     model.addAttribute("edit", true);
     return "/pizzas/create-edit";
   }
@@ -78,6 +85,7 @@ public class PizzaController {
   @PostMapping("/edit/{id}")
   public String update(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
     if (bindingResult.hasErrors()) {
+      model.addAttribute("ingredients", ingredientRepository.findAll());
       return "/pizzas/create-edit";
     }
     pizzaRepository.save(formPizza);
