@@ -14,6 +14,11 @@
       <img th:src="*{pictureUrl}" th:alt="'Pizza ' + *{name}" class="mb-2">
 
       <h3 class="mb-1">Ingredienti:</h3>
+      <div class="mb-3" th:each="ingredient : ${pizza.ingredients}">
+        <p th:text="${ingredient.name}" />
+      </div>
+
+      <h3 class="mb-1">Descrizione:</h3>
       <p th:text="*{description}" class="mb-3" />
 
       <h4 th:text="*{price} + '€'" />
