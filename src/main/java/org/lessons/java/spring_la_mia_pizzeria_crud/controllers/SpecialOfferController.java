@@ -1,7 +1,7 @@
 package org.lessons.java.spring_la_mia_pizzeria_crud.controllers;
 
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.SpecialOffer;
-import org.lessons.java.spring_la_mia_pizzeria_crud.repositories.SpecialOfferRepository;
+import org.lessons.java.spring_la_mia_pizzeria_crud.service.SpecialOfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class SpecialOfferController {
 
   @Autowired
-  private SpecialOfferRepository offerRepository;
+  private SpecialOfferService offerService;
 
   @GetMapping("/{id}")
   public String showSpecialOffer(@PathVariable("id") Integer id, Model model) {
-    model.addAttribute("offer", offerRepository.findById(id).get());
+    model.addAttribute("offer", offerService.getById(id));
     return "special-offers/show";
   }
 
@@ -34,13 +34,13 @@ public class SpecialOfferController {
     if (bindingResult.hasErrors()) {
       return "special-offers/create-edit";
     }
-    offerRepository.save(offerToStore);
+    offerService.create(offerToStore);
     return "redirect:/pizzas";
   }
 
   @GetMapping("/edit/{id}")
   public String editSpecialOffer(@PathVariable("id") Integer id, Model model) {
-    model.addAttribute("offer", offerRepository.findById(id).get());
+    model.addAttribute("offer", offerService.getById(id));
     model.addAttribute("edit", true);
     return "special-offers/create-edit";
   }
@@ -52,7 +52,7 @@ public class SpecialOfferController {
     if (bindingResult.hasErrors()) {
       return "special-offers/create-edit";
     }
-    offerRepository.save(offerToUpdate);
+    offerService.update(offerToUpdate);
     return "redirect:/pizzas";
   }
 
