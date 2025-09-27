@@ -7,6 +7,7 @@ import org.lessons.java.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.SpecialOffer;
 import org.lessons.java.spring_la_mia_pizzeria_crud.repositories.IngredientRepository;
 import org.lessons.java.spring_la_mia_pizzeria_crud.repositories.PizzaRepository;
+import org.lessons.java.spring_la_mia_pizzeria_crud.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,9 @@ public class PizzaController {
 
   @Autowired
   private PizzaRepository pizzaRepository;
+
+  @Autowired
+  private PizzaService pizzaService;
 
   @Autowired
   private IngredientRepository ingredientRepository;
