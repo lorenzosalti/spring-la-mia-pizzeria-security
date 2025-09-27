@@ -1,7 +1,6 @@
 package org.lessons.java.spring_la_mia_pizzeria_crud.controllers;
 
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.Pizza;
-import org.lessons.java.spring_la_mia_pizzeria_crud.model.SpecialOffer;
 import org.lessons.java.spring_la_mia_pizzeria_crud.service.IngredientService;
 import org.lessons.java.spring_la_mia_pizzeria_crud.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,9 +94,7 @@ public class PizzaController {
 
   @GetMapping("/{id}/offer")
   public String createOffer(@PathVariable Integer id, Model model) {
-    SpecialOffer offer = new SpecialOffer();
-    offer.setPizza(pizzaService.getById(id));
-    model.addAttribute("offer", offer);
+    model.addAttribute("offer", pizzaService.newOfferByPizzaId(id));
     return "special-offers/create-edit";
   }
 
