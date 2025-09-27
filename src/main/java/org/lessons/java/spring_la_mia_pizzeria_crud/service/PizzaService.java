@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.Ingredient;
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.Pizza;
+import org.lessons.java.spring_la_mia_pizzeria_crud.model.SpecialOffer;
 import org.lessons.java.spring_la_mia_pizzeria_crud.repositories.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,4 +44,9 @@ public class PizzaService {
     pizzaRepository.deleteById(id);
   }
 
+  public SpecialOffer newOfferByPizzaId(Integer id) {
+    SpecialOffer offer = new SpecialOffer();
+    offer.setPizza(getById(id));
+    return offer;
+  }
 }
