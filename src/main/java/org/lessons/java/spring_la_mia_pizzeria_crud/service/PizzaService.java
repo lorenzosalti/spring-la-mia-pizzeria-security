@@ -1,6 +1,7 @@
 package org.lessons.java.spring_la_mia_pizzeria_crud.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.Ingredient;
 import org.lessons.java.spring_la_mia_pizzeria_crud.model.Pizza;
@@ -21,6 +22,10 @@ public class PizzaService {
 
   public List<Pizza> findByName(String name) {
     return pizzaRepository.findByNameContaining(name);
+  }
+
+  public Optional<Pizza> findById(Integer id) {
+    return pizzaRepository.findById(id);
   }
 
   public Pizza getById(Integer id) {
