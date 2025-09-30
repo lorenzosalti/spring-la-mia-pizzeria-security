@@ -81,6 +81,11 @@
 				<scope>test</scope>
 		</dependency>
 
+		<dependency>
+    		<groupId>org.thymeleaf.extras</groupId>
+   	 		<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+		</dependency>
+
 				<!-- webjars -->
 		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
 		<dependency>
