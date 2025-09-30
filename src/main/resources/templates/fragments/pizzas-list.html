@@ -6,8 +6,10 @@
       <span th:text="*{name}" />
       <span th:text="*{price} + '€'" />
     </a>
-    <a th:href="@{/pizzas/edit/{id}(id=*{id})}" class="btn btn-warning">Modifica</a>
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#delete-modal-' + *{id}">
+    <a th:href="@{/pizzas/edit/{id}(id=*{id})}" class="btn btn-warning"
+      sec:authorize="hasAuthority('ADMIN')">Modifica</a>
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#delete-modal-' + *{id}"
+      sec:authorize="hasAuthority('ADMIN')">
       Elimina
     </button>
 

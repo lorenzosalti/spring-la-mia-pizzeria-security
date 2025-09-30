@@ -22,7 +22,7 @@
       Siamo spiacenti ma non ci sono pizze disponibili.
     </p>
 
-    <a class="btn btn-primary" href="/pizzas/create">Crea la tua pizza</a>
+    <a class="btn btn-primary" href="/pizzas/create" sec:authorize="hasAuthority('ADMIN')">Crea la tua pizza</a>
   </main>
 
   <script th:replace="~{fragments/resources :: script}"></script>
