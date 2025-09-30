@@ -1,21 +1,18 @@
-# La mia Pizzeria - REST API
+# La mia Pizzeria - Security
 
-Il progetto è il proseguimento di quello iniziato nella repository lorenzosalti/spring-la-mia-pizzeria-relazioni
+Il progetto è il proseguimento di quello iniziato nella repository lorenzosalti/spring-la-mia-pizzeria-webapi
 
 ---
 
-Implementiamo l'accesso alla nostra applicazione anche all’esterno, esponiamo degli endpoint REST!
+Finalmente proteggiamo la nostra applicazione!
 
+Abbiamo sviluppato tutte le pagine per gestire la nostra pizzeria (elenco pizze, dettagli singola pizza, creazione, modifica, cancellazione, offerte speciali, ingredienti)…ma vogliamo che chiunque possa effettuare queste operazioni? Sicuramente no!
 
-Implementiamo quindi i metodi CRUD tramite RestController.
+Quindi inseriamo l’autenticazione in modo che solo gli utenti registrati possano accedere a queste pagine.
 
+Creiamo le entity necessarie e popoliamo a mano i dati degli utenti nel database.
 
-Diamo la possibilità di :
+Sono previsti due ruoli : **USER** e **ADMIN**
 
-- ottenere la lista di pizze (dobbiamo anche poterle filtrare per titolo)
-- leggere i dettagli di una singola pizza
-- creare una nuova pizza
-- modificare una pizza esistente
-- cancellare una pizza
-
-Queste operazioni devono poter essere eseguite tramite PostMan, non preoccupiamoci quindi della parte di frontend per ora.
+Chi avrà assegnato come ruolo **USER** potrà accedere solo alla pagina index e a quella di dettaglio.
+Chi invece avrà assegnato come ruolo **ADMIN** potrà fare tutto.
