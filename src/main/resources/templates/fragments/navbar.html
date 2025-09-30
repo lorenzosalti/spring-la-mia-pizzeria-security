@@ -20,7 +20,7 @@
       </ul>
       <a href="/login" class="btn btn-primary" sec:authorize="isAnonymous()">Login</a>
       <div class="user-info" sec:authorize="isAuthenticated()">
-        Logged user: <span sec:authentication="name"></span>
+        Logged user: <strong sec:authentication="name"></strong>
         Roles: <span sec:authentication="principal.authorities"></span>
         <a class="btn btn-primary" href="/logout">Logout</a>
       </div>
